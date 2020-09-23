@@ -75,17 +75,22 @@ class GithubArchiveInstaller implements PluginInterface, EventSubscriberInterfac
 		 */
 		$package = $this->getPackageFromOperation( $event->getOperation() );
 
-		if ( array_key_exists( 'wpscholar/github-archive-installer', $package->getRequires() ) ) {
-			if ( version_compare( $package->getFullPrettyVersion(), '0.0.0', '>=' ) ) {
-				$package->setDistUrl(
-					sprintf(
-						'https://github.com/%1$s/releases/download/%2$s/%3$s.zip',
-						$package->getName(),
-						$package->getFullPrettyVersion(),
-						explode( '/', $package->getName() )[1]
-					)
-				);
-			}
+		$version_is_tag = version_compare(
+			preg_replace( '/^v/', '', $package->getFullPrettyVersion() ),
+			'0.0.0',
+			'>='
+		);
+
+		$can_use_release_zip = $version_is_tag && array_key_exists( 'greenpeace/github-archive-installer', $package->getRequires() );
+
+		if ($can_use_release_zip) {
+			$zip_url = sprintf(
+				'https://github.com/%1$s/releases/download/%2$s/%3$s.zip',
+				$package->getName(),
+				$package->getFullPrettyVersion(),
+				explode( '/', $package->getName() )[1]
+			);
+			$package->setDistUrl( $zip_url );
 		}
 	}
 

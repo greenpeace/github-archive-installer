@@ -1,16 +1,17 @@
 {
-  "name": "wpscholar/github-archive-installer",
-  "description": "A custom Composer installer that will install a dependency from a GitHub release archive .zip file when installing from distribution.",
+  "name": "greenpeace/github-archive-installer",
+  "description": "Forked from https://github.com/wpscholar/github-archive-installer. A custom Composer installer that will install a dependency from a GitHub release archive .zip file when installing from distribution.",
   "type": "composer-plugin",
   "license": "GPL-2.0-or-later",
   "authors": [
     {
-      "name": "Micah Wood",
-      "email": "micah@wpscholar.com"
+      "name": "Greenpeace International",
+      "email": "planet4-group@greenpeace.org"
     }
   ],
   "require": {
-    "composer-plugin-api": "^1.1 || ^2.0"
+    "composer-plugin-api": "^1.1 || ^2.0",
+    "ext-curl": "*"
   },
   "autoload": {
     "psr-4": {

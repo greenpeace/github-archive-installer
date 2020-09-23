@@ -1,5 +1,7 @@
 # GitHub Archive Installer
 
+Forked from https://github.com/wpscholar/github-archive-installer.
+
 A custom Composer installer that will install a dependency from a GitHub release archive .zip file when installing from distribution.
 
 ## Why You Need It
