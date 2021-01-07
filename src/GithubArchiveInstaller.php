@@ -102,7 +102,10 @@ class GithubArchiveInstaller implements PluginInterface, EventSubscriberInterfac
 	 * @return \Composer\Package\PackageInterface The package of the operation
 	 */
 	public function getPackageFromOperation( OperationInterface $operation ) {
-		if ( $operation instanceof UpdateOperation ) {
+		if (
+			$operation instanceof UpdateOperation
+			|| method_exists($operation, 'getJobType' && 'update' === $operation->getJobType())
+		) {
 			/**
 			 * Operation is an update operation.
 			 *
